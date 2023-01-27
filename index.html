@@ -3,5 +3,17 @@
         <title>Personal Website</title>
     	<script defer src='main.js'></script>
     </head>
-    <body>Hello, world!</body>
+    <body>
+        Hello, world!    
+        <embed type="text/plain" src="code.scm" contenteditable="true" />
+
+
+        <iframe
+            src="code.scm"
+            contenteditable="true"
+        ></iframe>
+
+        <p>Notice that, for example <code>(== x a) (== y b) (== z c)</code> is equivalent to <code>(== '(x y z) '(a b c))</code>.</p>
+
+    </body>
 </html>
