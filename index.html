@@ -4,8 +4,15 @@
     	<script defer src='main.js'></script>
     </head>
     <body>
-        <p>Notice that, for example <code>(== x a) (== y b) (== z c)</code> is equivalent to <code>(== '(x y z) '(a b c))</code>.</p>
+        <p>Notice that, for example <code>(== x a) (== y b) (== z c)</code> is equivalent to <code>(== `(,x ,y ,z) `(,a ,b ,c))</code>.</p>
 
-        <textarea class="code-snippet" id="appendo"></textarea>
+        <scheme-code src="riffleo.mk.scm"></scheme-code>
+
+        <scheme-code>
+(defrel (bacono movies)
+    (conde
+        ((== movies '()))))
+        </scheme-code>
+
     </body>
 </html>

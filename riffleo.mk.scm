@@ -1,11 +1,10 @@
-(defrel (riffleo a b o)
-    (fresh (car-a cdr-a car-b cdr-b car-o cdr-o z0 z1)
+(defrel (riffleo l1 l2 lo)
+    (fresh (h1 t1 h2 t2 ho to z0 z1)
         (conde
-            ;; If `a` and `b` are both empty, then the output is empty.
-            ((== a '()) (== b '()) (== o '()))
+            ((== `(,l1 ,l2 ,lo)) `(() () ()))
+            ((== `(,l1 ,l2 ,lo)) `((,h1 . ,t1) () (,h1 . ,t1)))
+            ((== `(,l1 ,l2 ,lo)) `(() (,h2 . ,t2) (,h2 . ,t2)))
             
-            ;; If `a` is non-empty and `b` is empty, then the output is equal to `a`.
-            ((== a `(,car-a . ,cdr-a)) (== b '()) (== o a))
             
             ;; If `a` is empty and `b` is non-empty, then the output is equal to `b`.
             ((== a '()) (== b `(,car-b . ,cdr-b)) (== o b))
