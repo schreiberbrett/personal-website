@@ -1,15 +1,23 @@
 // @ts-check
 
-var x = new XMLHttpRequest();
-var sourceCode = new URL('https://raw.githubusercontent.com/schreiberbrett/personal-website/master/code.scm')
 
-fetch(sourceCode).then(response => {
-    if (response.ok) {
-        response.text().then(x => {
-            console.log('I found:', x)
-        })
-    }
-});
+function loadFile(
+    /** @type {string} */ filename
+) {
+    return fetch(
+        new URL(`https://raw.githubusercontent.com/schreiberbrett/personal-website/master/${filename}.scm`),
+        {cache: 'no-store'}
+    )
+}
 
+/** @type {Array<Promise<Response>>} */
+let filePromises = []
 
-console.log('Hello, world!');
+for (let snippet of document.getElementsByClassName("mk-snippet"))
+{
+    loadFile(`${snippet.id}.mk.scm`).then(response =>
+        response.text().then(text =>
+            snippet.textContent = text
+        )
+    )
+}
